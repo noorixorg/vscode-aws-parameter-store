@@ -1,0 +1,187 @@
+{
+  "name": "aws-parameter-store",
+  "displayName": "AWS Parameter Store",
+  "description": "View and edit AWS Systems Manager Parameter Store values with local AWS profiles",
+  "version": "0.0.1",
+  "publisher": "murtaza-nooruddin",
+  "author": {
+    "name": "Murtaza Nooruddin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/murtaza-nooruddin/vscode-aws-parameter-store.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "aws",
+    "parameter store",
+    "ssm",
+    "systems manager",
+    "cloud",
+    "secrets",
+    "configuration",
+    "devops"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "awsParameterStore.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "awsParameterStore.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "awsParameterStore.selectProfile",
+        "title": "Select AWS Profile",
+        "icon": "$(account)"
+      },
+      {
+        "command": "awsParameterStore.selectRegion",
+        "title": "Select Region",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "awsParameterStore.createParameter",
+        "title": "Create Parameter",
+        "icon": "$(add)"
+      },
+      {
+        "command": "awsParameterStore.editParameter",
+        "title": "Edit Parameter"
+      },
+      {
+        "command": "awsParameterStore.deleteParameter",
+        "title": "Delete Parameter"
+      },
+      {
+        "command": "awsParameterStore.copyParameterName",
+        "title": "Copy Parameter Name"
+      },
+      {
+        "command": "awsParameterStore.copyParameterValue",
+        "title": "Copy Parameter Value"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "awsParameterStore",
+          "name": "AWS Parameter Store",
+          "when": "true"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "awsParameterStore.selectProfile",
+          "when": "view == awsParameterStore",
+          "group": "navigation@1"
+        },
+        {
+          "command": "awsParameterStore.selectRegion",
+          "when": "view == awsParameterStore",
+          "group": "navigation@2"
+        },
+        {
+          "command": "awsParameterStore.createParameter",
+          "when": "view == awsParameterStore",
+          "group": "navigation@3"
+        },
+        {
+          "command": "awsParameterStore.refresh",
+          "when": "view == awsParameterStore",
+          "group": "navigation@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "awsParameterStore.editParameter",
+          "when": "view == awsParameterStore && viewItem == parameter",
+          "group": "inline@1"
+        },
+        {
+          "command": "awsParameterStore.copyParameterName",
+          "when": "view == awsParameterStore && viewItem == parameter",
+          "group": "copy@1"
+        },
+        {
+          "command": "awsParameterStore.copyParameterValue",
+          "when": "view == awsParameterStore && viewItem == parameter",
+          "group": "copy@2"
+        },
+        {
+          "command": "awsParameterStore.deleteParameter",
+          "when": "view == awsParameterStore && viewItem == parameter",
+          "group": "destructive@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AWS Parameter Store",
+      "properties": {
+        "awsParameterStore.defaultProfile": {
+          "type": "string",
+          "default": "default",
+          "description": "Default AWS profile to use"
+        },
+        "awsParameterStore.defaultRegion": {
+          "type": "string",
+          "default": "us-east-1",
+          "description": "Default AWS region to use"
+        },
+        "awsParameterStore.parametersPerPage": {
+          "type": "number",
+          "default": 50,
+          "description": "Number of parameters to fetch per page"
+        },
+        "awsParameterStore.showSecureValues": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show secure parameter values (requires additional permissions)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "ts-loader": "^9.4.1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ssm": "^3.450.0",
+    "@aws-sdk/credential-provider-ini": "^3.450.0",
+    "@aws-sdk/credential-provider-node": "^3.450.0"
+  }
+}
+
