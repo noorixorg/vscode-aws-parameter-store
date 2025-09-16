@@ -1,8 +1,8 @@
 {
   "name": "aws-parameter-store",
   "displayName": "AWS Parameter Store",
-  "description": "View and edit AWS Systems Manager Parameter Store values with local AWS profiles",
-  "version": "0.0.1",
+  "description": "AWS Systems Manager Parameter Store for VS Code - View, edit, and manage AWS SSM parameters with secure handling and local profile support",
+  "version": "0.0.3",
   "publisher": "noorix",
   "author": {
     "name": "Murtaza Nooruddin"
@@ -12,6 +12,7 @@
     "url": "https://github.com/noorixorg/vscode-aws-parameter-store"
   },
   "license": "MIT",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -21,12 +22,17 @@
   "keywords": [
     "aws",
     "parameter store",
+    "parameter-store",
     "ssm",
     "systems manager",
-    "cloud",
+    "aws ssm",
     "secrets",
     "configuration",
-    "devops"
+    "devops",
+    "amazon",
+    "parameters",
+    "environment",
+    "config"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -34,10 +40,6 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "awsParameterStore.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "awsParameterStore.refresh",
         "title": "Refresh",
