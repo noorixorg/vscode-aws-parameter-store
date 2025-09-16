@@ -3,13 +3,13 @@
   "displayName": "AWS Parameter Store",
   "description": "View and edit AWS Systems Manager Parameter Store values with local AWS profiles",
   "version": "0.0.1",
-  "publisher": "murtaza-nooruddin",
+  "publisher": "noorix",
   "author": {
     "name": "Murtaza Nooruddin"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/murtaza-nooruddin/vscode-aws-parameter-store.git"
+    "url": "https://github.com/noorixorg/vscode-aws-parameter-store"
   },
   "license": "MIT",
   "engines": {
